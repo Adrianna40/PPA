@@ -9,7 +9,7 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="43.0" layoutY="87.0" mnemonicParsing="false" onAction="#alternativeChange" text="Podmianka znów " />
+            <Button layoutX="43.0" layoutY="87.0" mnemonicParsing="false" onAction="#OtherSceneToSample" text="Podmianka znów " />
          </children>
       </Pane>
    </center>

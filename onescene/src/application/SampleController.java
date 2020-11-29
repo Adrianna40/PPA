@@ -1,7 +1,13 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -12,7 +18,8 @@ public class SampleController {
 	protected BorderPane root;
 	protected BorderPane otherRoot;
 	protected Stage stage;
-	
+
+
 	public Stage getStage() {
 		return stage;
 	}
@@ -44,15 +51,31 @@ public class SampleController {
 	public void setOtherRoot(BorderPane otherRoot) {
 		this.otherRoot = otherRoot;
 	}
-	@FXML public void alternativeChange(ActionEvent event) {
-		this.scene.setRoot(otherRoot);
-		this.setOtherRoot(root);
-		this.setRoot(otherRoot);
-		this.stage.setScene(this.getScene());
-		this.stage.show();
-		
-		
-	}
+	
+	
+    public void changeScene(Event event, String nameOfFxml) throws IOException {
+        Node node=(Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource(nameOfFxml));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("OtherSceneToSample");
+    }
+	
+	 @FXML
+	    public void alternativeChangeToOther(ActionEvent event) throws IOException {
+	        changeScene(event,"Other.fxml");
+	    }
+
+	    @FXML
+	    public void OtherSceneToSample(ActionEvent event) throws IOException {
+	        changeScene(event,"sample.fxml");
+	    }
+	    
+
+
+
 
 	
 }
